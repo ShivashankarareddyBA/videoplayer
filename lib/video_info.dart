@@ -14,11 +14,13 @@ class VideoInfo extends StatefulWidget {
 
 class _VideoInfoState extends State<VideoInfo> {
   List videoinfo = [];
-  _initData() {
-    DefaultAssetBundle.of(context)
+  _initData() async {
+    await DefaultAssetBundle.of(context)
         .loadString("json/videoinfo.json")
         .then((value) {
-      videoinfo = json.decode(value);
+      setState(() {
+        videoinfo = json.decode(value);
+      });
     });
   }
 
@@ -219,9 +221,119 @@ class _VideoInfoState extends State<VideoInfo> {
                     ),
                     Expanded(
                       child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 8),
                           itemCount: videoinfo.length,
                           itemBuilder: (_, int index) {
-                            return GestureDetector();
+                            return GestureDetector(
+                              onTap: () {
+                                debugPrint(index.toString());
+                              },
+                              child: Container(
+                                height: 135,
+                                width: 200,
+
+                                //color: Colors.red,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 80,
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              image: AssetImage(videoinfo[index]
+                                                  ["thumbnail"]),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              videoinfo[index]["title"],
+                                              style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 3),
+                                              child: Text(
+                                                videoinfo[index]["time"],
+                                                style: TextStyle(
+                                                  color: Colors.red[500],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 20,
+                                          width: 80,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFeaeefc),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              "15s rest",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.blue,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            for (int i = 0; i < 70; i++)
+                                              i.isEven
+                                                  ? Container(
+                                                      height: 1,
+                                                      width: 3,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(2),
+                                                          color: const Color(
+                                                              0XFF839fed)),
+                                                    )
+                                                  : Container(
+                                                      height: 1,
+                                                      width: 3,
+                                                      color: Colors.white,
+                                                    ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
                           }),
                     ),
                   ],

@@ -1,0 +1,40 @@
+[
+    {
+
+        "title": "Squat and Walk",
+         "time": "45 Seconds",
+         "thumbnail": "assets/squat6.jpeg",
+         "videoUrl" : "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://m.youtube.com/watch%3Fv%3DGdCY7hXL26E&ved=2ahUKEwjM0suu_uWCAxVnbmwGHZB_Aw0QwqsBegQICxAF&usg=AOvVaw0ogQ9jOad2G9KAhlkuLCT4"
+    },
+
+    {
+        "title": "Squat and Walk",
+         "time": "48 Seconds",
+         "thumbnail": "assets/squat2.jpeg",
+         "videoUrl" : "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://m.youtube.com/watch%3Fv%3Dspyw0qihOfQ&ved=2ahUKEwjJh4WG_uWCAxV9fWwGHSPnD3EQwqsBegQIChAG&usg=AOvVaw1KWsoOPJzBLeMFCzQnM7bZ"
+
+    },
+    {
+        "title": "Squat and backWalk",
+         "time": "55 Seconds",
+         "thumbnail": "assets/squat3.jpeg",
+         "videoUrl" : "https://www.youtube.com/playlist?list=PLLALQuK1NDrgqWemjCGNsw3o_7MrzRIJv"
+
+    },
+    
+
+    {
+        "title": "Squat and frontWalk",
+         "time": "65 Seconds",
+         "thumbnail": "assets/squat4.jpeg",
+         "videoUrl" : "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://m.youtube.com/watch%3Fv%3DGdCY7hXL26E&ved=2ahUKEwjM0suu_uWCAxVnbmwGHZB_Aw0QwqsBegQICxAF&usg=AOvVaw0ogQ9jOad2G9KAhlkuLCT4"
+
+    },
+    {
+        "title": "Pile Squat and Heels Walk",
+         "time": "45 Seconds",
+         "thumbnail": "assets/squat5.jpeg",
+         "videoUrl" : "https://www.youtube.com/playlist?list=PLLALQuK1NDrgqWemjCGNsw3o_7MrzRIJv"
+
+    }
+]
