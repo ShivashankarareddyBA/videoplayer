@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_players/home_page.dart';
-import 'package:video_players/video_info.dart';
 
 void main() {
   runApp(const MyApp());
