@@ -277,7 +277,7 @@ class _VideoInfoState extends State<VideoInfo> {
 
   Widget _playView(BuildContext context) {
     final controller = _controller;
-    if (controller != null && controller.value.isInitialized) {
+    if (controller.value.isInitialized) {
       return AspectRatio(
         aspectRatio: 16 / 9,
         child: VideoPlayer(controller),
@@ -286,7 +286,13 @@ class _VideoInfoState extends State<VideoInfo> {
       return const AspectRatio(
         aspectRatio: 16 / 9,
         child: Center(
-          child: Text("Being initialized please be wait"),
+          child: Text(
+            "Preparing..",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white60,
+            ),
+          ),
         ),
       );
     }
@@ -294,13 +300,14 @@ class _VideoInfoState extends State<VideoInfo> {
 
   _onTapVideo(int index) {
     final controller =
-        VideoPlayerController.networkUrl(videoinfo[index]["videoUrl"]);
+        VideoPlayerController.network(videoinfo[index]["videoUrl"]);
     _controller = controller;
 
     setState(() {});
-    controller.initialize().then((_) {});
-    controller.play();
-    setState(() {});
+    controller.initialize().then((_) {
+      _controller.play();
+      setState(() {});
+    });
   }
 
   _listView() {
