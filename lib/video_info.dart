@@ -365,6 +365,7 @@ class _VideoInfoState extends State<VideoInfo> {
     if (_disposed) {
       return;
     }
+    // need to start further //////////////////////////////
     final controller = _controller;
     if (controller == null) {
       debugPrint("controller is null");
@@ -378,7 +379,7 @@ class _VideoInfoState extends State<VideoInfo> {
     _isPlaying = playing;
   }
 
-  _onTapVideo(int index) {
+  _initializeVideo(index) async {
     final controller =
         VideoPlayerController.network(videoinfo[index]["videoUrl"]);
     final old = _controller;
@@ -395,6 +396,10 @@ class _VideoInfoState extends State<VideoInfo> {
       controller.play();
       setState(() {});
     });
+  }
+
+  _onTapVideo(int index) {
+    _initializeVideo(index);
   }
 
   _listView() {
