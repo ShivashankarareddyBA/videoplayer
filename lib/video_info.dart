@@ -18,6 +18,7 @@ class _VideoInfoState extends State<VideoInfo> {
   bool _playerArea = false;
   bool _isPlaying = false;
   bool _disposed = false;
+  int _isPlayingIndex = -1;
   VideoPlayerController? _controller;
   _initData() async {
     await DefaultAssetBundle.of(context)
@@ -296,7 +297,14 @@ class _VideoInfoState extends State<VideoInfo> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
-            onPressed: () async {},
+            onPressed: () async {
+              final index = _isPlayingIndex - 1;
+              if (index >= 0 && videoinfo.length >= 0) {
+                _initializeVideo(index);
+              } else {
+                Get.snackbar("video", "No more videos to play");
+              }
+            },
             child: const Icon(
               Icons.fast_rewind,
               size: 36,
@@ -326,7 +334,14 @@ class _VideoInfoState extends State<VideoInfo> {
             ),
           ),
           TextButton(
-            onPressed: () async {},
+            onPressed: () async {
+              final index = _isPlayingIndex + 1;
+              if (index <= videoinfo.length - 1) {
+                _initializeVideo(index);
+              } else {
+                Get.snackbar("video", "You watched all the videos");
+              }
+            },
             child: const Icon(
               Icons.fast_forward,
               size: 36,
@@ -361,11 +376,18 @@ class _VideoInfoState extends State<VideoInfo> {
     }
   }
 
+  var _updateControllerTime;
+
   void _controllerUpdate() async {
     if (_disposed) {
       return;
     }
-    // need to start further //////////////////////////////
+    _updateControllerTime = 0;
+    final now = DateTime.now().microsecondsSinceEpoch;
+    if (_updateControllerTime > now) {
+      return;
+    }
+    _updateControllerTime = now + 500;
     final controller = _controller;
     if (controller == null) {
       debugPrint("controller is null");
@@ -392,6 +414,7 @@ class _VideoInfoState extends State<VideoInfo> {
     setState(() {});
     controller.initialize().then((_) {
       old?.dispose();
+      _isPlayingIndex = index;
       controller.addListener(_controllerUpdate);
       controller.play();
       setState(() {});
