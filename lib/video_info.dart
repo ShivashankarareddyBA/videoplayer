@@ -339,7 +339,8 @@ class _VideoInfoState extends State<VideoInfo> {
               if (index <= videoinfo.length - 1) {
                 _initializeVideo(index);
               } else {
-                Get.snackbar("video", "You watched all the videos");
+                Get.snackbar(
+                    "video", "You watched all the videos Congratulations!");
               }
             },
             child: const Icon(
